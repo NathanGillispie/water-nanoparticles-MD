@@ -6,7 +6,7 @@ water = loadPdb "water_solvated.pdb"
 
 set water restype solvent
 
-set water box {60, 60, 60}
+set water box {45, 45, 45}
 
 system = sequence {water}
 

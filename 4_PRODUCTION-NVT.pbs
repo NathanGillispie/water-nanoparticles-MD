@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1,walltime=48:00:00
+#PBS -o logs/4_prod.out
+#PBS -e logs/4_prod.err
+NCPU=`wc -l < $PBS_NODEFILE`
+NNODES=`uniq $PBS_NODEFILE | wc -l`
+
+cd $PBS_O_WORKDIR
+mpirun -n ${NCPU} /opt/amber14/bin/sander -O -i md_inputs/4_production.in -o md_outputs/4_production.out -p md_inputs/water_solvated.prmtop -c checkpoints/3_eq.rst -r checkpoints/4_production.rst -x ptraj/production.mdcrd
+

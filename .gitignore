@@ -1,0 +1,13 @@
+# log files
+/logs/*.log
+/logs/*.err
+
+# MD coordinates
+*.mdcrd
+
+# Simulation specific logs
+mdinfo
+rstdip
+
+# Data file generated from numpy
+*.pkl

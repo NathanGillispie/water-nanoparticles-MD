@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1,walltime=1:00:00
+#PBS -o logs/0_min.out
+#PBS -e logs/0_min.err
+NCPU=`wc -l < $PBS_NODEFILE`
+NNODES=`uniq $PBS_NODEFILE | wc -l`
+cd $PBS_O_WORKDIR
+
+mpirun -n ${NCPU} /opt/amber14/bin/sander -O -i md_inputs/0_min.in -o md_outputs/0_min.out -p md_inputs/water_solvated.prmtop -c md_inputs/water_solvated.inpcrd -r checkpoints/0_min.rst

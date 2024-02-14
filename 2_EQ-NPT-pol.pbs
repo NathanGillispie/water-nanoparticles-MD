@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1,walltime=48:00:00
+#PBS -o logs/2_eq.out
+#PBS -e logs/2_eq.err
+NCPU=`wc -l < $PBS_NODEFILE`
+NNODES=`uniq $PBS_NODEFILE | wc -l`
+cd $PBS_O_WORKDIR
+
+mpirun -n ${NCPU} /opt/amber14/bin/sander -O -i md_inputs/2_eq.in -o md_outputs/2_eq.out -p md_inputs/water_solvated.prmtop -c checkpoints/1_heating.rst -r checkpoints/2_eq.rst -x ptraj/2_eq.mdcrd 

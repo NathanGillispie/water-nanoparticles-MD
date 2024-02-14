@@ -1,0 +1,16 @@
+set default IPOL 1
+source leaprc.tip3p
+loadAmberParams frcmod.pol3
+
+water = loadPdb "water_solvated.pdb"
+
+set water restype solvent
+
+set water box {60, 60, 60}
+
+system = sequence {water}
+
+set system name "WaterBox"
+
+saveAmberParmPol system ../md_inputs/water_solvated.prmtop ../md_inputs/water_solvated.inpcrd
+

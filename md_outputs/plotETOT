@@ -1,0 +1,5 @@
+plot "summary.ETOT" smooth csplines
+set term png
+set output "ETOT.png"
+replot
+quit

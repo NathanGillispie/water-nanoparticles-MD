@@ -1,0 +1,38 @@
+source leaprc.tip3p
+loadAmberParams frcmod.pol3
+loadAmberParams frcmod.so2
+
+addAtomTypes {
+	{ "S" "S" "sp3" }
+	{ "OS" "O" "sp2" }
+}
+
+o1 = createAtom O1 OS -0.537
+o2 = createAtom O2 OS -0.537
+s = createAtom S S 1.074
+
+set s  element S
+set o1 element O
+set o2 element O
+
+r = createResidue SO2
+add r o1
+add r o2
+add r s
+
+bond o1 s
+bond o2 s
+
+so2 = createUnit SO2
+
+add so2 r
+
+set so2.1 restype solvent
+set so2.1 imagingAtom so2.1.S
+
+zMatrix so2 { { O1 S 1.431 } { O2 S O1 1.431 119. } }
+
+setbox so2 centers
+set so2 box {5, 5, 5}
+
+saveOff so2 SO2.lib
